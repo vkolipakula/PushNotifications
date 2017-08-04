@@ -4,7 +4,8 @@
   "description": "This is for learning",
   "main": "app.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "node index.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/vkolipakula/PushNotifications/issues"
   },
-  "homepage": "https://github.com/vkolipakula/PushNotifications#readme"
+  "homepage": "https://github.com/vkolipakula/PushNotifications#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3"
+  }
 }
