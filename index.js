@@ -41,20 +41,22 @@ app.get("/status",function(req,res){
 
 app.post("/notify",function(req,res){
 	var body = req.body.data
+	var caseNum = body.casenum
+	var msg = body.message
 	console.log("-------note----",body);
 	//var iosToken = '25659ed9379895eb99cfcce944320f928438ef2def5841c1ef84327b156f8492';
 	//Raj
 	//var iosToken = '468479b65dbab9d78a22e09e3af54e454a162fff9392289bf4ed2331adea8517';
-	if(tmp_arr.length >0){
+	
 		_.each(tmp_arr,function(eachObj){
 			var message = 'Testing';
-			var badge = "Your case ref num is "+body.casenum+" "+body.message;
+			var badge = "Your case ref num is "+caseNum+" "+msg;
 			var sound = null;
 			var payload = {title: 'No matter', message: message, badge: 'Hola is working', sound: ''};
 			// send a notification to a single device 
 			PushNotification.pushSingle(DeviceType.IOS, eachObj, message, badge, sound, payload);		
 		})
-	}
+	
 
  
 	// send a notification to multiple devices 
