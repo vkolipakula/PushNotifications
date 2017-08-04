@@ -19,6 +19,11 @@
   "homepage": "https://github.com/vkolipakula/PushNotifications#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "json-fs-store": "^1.0.1",
+    "json-store": "0.0.1",
+    "path": "^0.12.7",
+    "push-notification": "^0.1.8",
+    "underscore": "^1.8.3"
   }
 }
