@@ -2,6 +2,11 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser')
 
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+app.use(bodyParser.json()); // for parsing application/json
+
 app.set('port', (process.env.PORT || 5000));
 app.get("/status",function(req,res){
 	
@@ -11,7 +16,8 @@ app.get("/status",function(req,res){
 });
 
 app.post("/notify",function(req,res){
-	var body = req.body
+	var body = req.body.data
+	console.log("----",req.body);
 	
 	res.send({"data":body});
 });
