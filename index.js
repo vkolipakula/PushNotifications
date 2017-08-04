@@ -49,6 +49,8 @@ app.post("/notify",function(req,res){
 	//var iosToken = '468479b65dbab9d78a22e09e3af54e454a162fff9392289bf4ed2331adea8517';
 	
 		_.each(tmp_arr,function(eachObj){
+			console.log("data ----",eachObj)
+			console.log("data ----",typeof eachObj)
 			var message = 'Testing';
 			var badge = "Your case ref num is "+caseNum+" "+msg;
 			var sound = null;
