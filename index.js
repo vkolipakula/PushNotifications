@@ -45,17 +45,18 @@ app.post("/notify",function(req,res){
 	//var iosToken = '25659ed9379895eb99cfcce944320f928438ef2def5841c1ef84327b156f8492';
 	//Raj
 	var iosToken = '35975b649307602d57153788d8493559c8c58b27931255ed44fd9dd2231bbeb4';
-	
-	var message = 'Testing';
-	var badge = "Your case ref num is "+body.casenum+" "+body.message;
-	var sound = null;
-	var payload = {title: 'No matter', message: message, badge: 'Hola is working', sound: ''};
-	 
-	 
-	// send a notification to a single device 
-	PushNotification.pushSingle(DeviceType.IOS, iosToken, message, badge, sound, payload);
-	
-	 
+	if(tmp_arr.length >0){
+		_.each(tmp_arr,function(eachObj){
+			var message = 'Testing';
+			var badge = "Your case ref num is "+body.casenum+" "+body.message;
+			var sound = null;
+			var payload = {title: 'No matter', message: message, badge: 'Hola is working', sound: ''};
+			// send a notification to a single device 
+			PushNotification.pushSingle(DeviceType.IOS, iosToken, message, badge, sound, payload);		
+		})
+	}
+
+ 
 	// send a notification to multiple devices 
 	//PushNotification.prepare(message, badge, sound, payload);
 	//PushNotification.addTarget(DeviceType.IOS, iosToken);
@@ -64,8 +65,9 @@ app.post("/notify",function(req,res){
 	res.send({"data":"Notification done"});
 });
 
-app.post('/store',function(req,res){
-	var data = req.body.data
+app.get('/store',function(req,res){
+	console.log("-----",req.query);
+	var data = req.query.data
 	tmp_arr.push(data);
 	tmp_arr = _.uniq(tmp_arr);
 	res.send({data:tmp_arr})
