@@ -1,0 +1,19 @@
+{
+  "name": "mani",
+  "version": "1.0.0",
+  "description": "This is for learning",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vkolipakula/PushNotifications.git"
+  },
+  "author": "mani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vkolipakula/PushNotifications/issues"
+  },
+  "homepage": "https://github.com/vkolipakula/PushNotifications#readme"
+}
