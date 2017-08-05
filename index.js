@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser')
+const logger = require('heroku-logger')
+ 
 var PushNotification = require('push-notification');
 var DeviceType = PushNotification.DeviceType;
 var path = require('path');
@@ -30,13 +32,13 @@ PushNotification.init({
         cert: path.resolve('./dev/AnaCertFinal.pem'),
         key: path.resolve('./dev/AnaKey.pem')
     }
-	
+	logger.info('Certificates initialized')
+
 });
 app.get("/status",function(req,res){
 	
 	res.status(200);
 	res.send({message:"Server is running"});
-	
 });
 
 app.post("/notify",function(req,res){
@@ -44,6 +46,9 @@ app.post("/notify",function(req,res){
 	var caseNum = body.casenum
 	var msg = body.message
 	console.log("-------note----",body);
+	
+	logger.info('Certificates initialized',body);
+
 	//var iosToken = '25659ed9379895eb99cfcce944320f928438ef2def5841c1ef84327b156f8492';
 	//Raj
 	//var iosToken = '468479b65dbab9d78a22e09e3af54e454a162fff9392289bf4ed2331adea8517';
@@ -51,12 +56,22 @@ app.post("/notify",function(req,res){
 		_.each(tmp_arr,function(eachObj){
 			console.log("data ----",eachObj)
 			console.log("data ----",typeof eachObj)
+			logger.info('device token',eachObj);
+
+			
 			var message = 'Testing';
 			var badge = "Your case ref num is "+caseNum+" "+msg;
 			var sound = null;
 			var payload = {title: 'No matter', message: message, badge: 'Hola is working', sound: ''};
 			// send a notification to a single device 
-			PushNotification.pushSingle(DeviceType.IOS, eachObj, message, badge, sound, payload);		
+			
+			try{
+				PushNotification.pushSingle(DeviceType.IOS, eachObj, message, badge, sound, payload);	
+				logger.info('Notification sent to IOS device',message);
+			}
+			catch(ex){
+				logger.error('Exception occured',ex);
+			}
 		})
 	
 
