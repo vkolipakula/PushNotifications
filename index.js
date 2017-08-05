@@ -29,7 +29,7 @@ PushNotification.init({
         cert: path.resolve('./dev/AnaCertFinal.pem'),
         key: path.resolve('./dev/AnaKey.pem')
     }
-	//logger.info('Certificates initialized',{message:"initialized"});
+	console.log('Certificates initialized');
 
 });
 app.get("/status",function(req,res){
@@ -66,12 +66,12 @@ app.post("/notify",function(req,res){
 			
 						
 				PushNotification.pushSingle(DeviceType.IOS, eachObj, message, badge, sound, payload);	
-			//	logger.info('Notification sent to IOS device',message);
+				console.log("Notification",eachObj,"message",message);
 	
 			
 		})
 	
-
+		console.log(" Push Notification Closed");
  
 	// send a notification to multiple devices 
 	//PushNotification.prepare(message, badge, sound, payload);
