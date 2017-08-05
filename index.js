@@ -1,8 +1,7 @@
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser')
-const logger = require('heroku-logger')
- 
+var bodyParser = require('body-parser');
+const logger = require('heroku-logger').logger;
 var PushNotification = require('push-notification');
 var DeviceType = PushNotification.DeviceType;
 var path = require('path');
@@ -11,7 +10,6 @@ var fs = require('fs');
 var tmp_arr = []
 var _ = require('underscore');
 
-console.log("--------------",store)
 
 //var cert = path.resolve('./certs/cer/Certificates_Ana.p12')
 //agent.set('pfx file', cert);
@@ -32,13 +30,14 @@ PushNotification.init({
         cert: path.resolve('./dev/AnaCertFinal.pem'),
         key: path.resolve('./dev/AnaKey.pem')
     }
-	logger.info('Certificates initialized')
+	logger.info('Certificates initialized');
 
 });
 app.get("/status",function(req,res){
 	
 	res.status(200);
 	res.send({message:"Server is running"});
+
 });
 
 app.post("/notify",function(req,res){
