@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-const logger = require('heroku-logger').logger;
+const Logger = require('heroku-logger').Logger;
 var PushNotification = require('push-notification');
 var DeviceType = PushNotification.DeviceType;
 var path = require('path');
@@ -9,8 +9,7 @@ var store = require('json-fs-store')('./db.json');
 var fs = require('fs');
 var tmp_arr = []
 var _ = require('underscore');
-
-
+console.log("initialization started");
 //var cert = path.resolve('./certs/cer/Certificates_Ana.p12')
 //agent.set('pfx file', cert);
 
@@ -30,7 +29,7 @@ PushNotification.init({
         cert: path.resolve('./dev/AnaCertFinal.pem'),
         key: path.resolve('./dev/AnaKey.pem')
     }
-	logger.info('Certificates initialized');
+	//logger.info('Certificates initialized',{message:"initialized"});
 
 });
 app.get("/status",function(req,res){
@@ -46,7 +45,7 @@ app.post("/notify",function(req,res){
 	var msg = body.message
 	console.log("-------note----",body);
 	
-	logger.info('Certificates initialized',body);
+	//logger.info('Certificates initialized',body);
 
 	//var iosToken = '25659ed9379895eb99cfcce944320f928438ef2def5841c1ef84327b156f8492';
 	//Raj
@@ -55,7 +54,7 @@ app.post("/notify",function(req,res){
 		_.each(tmp_arr,function(eachObj){
 			console.log("data ----",eachObj)
 			console.log("data ----",typeof eachObj)
-			logger.info('device token',eachObj);
+		//	logger.info('device token',eachObj);
 
 			
 			var message = 'Testing';
@@ -64,13 +63,12 @@ app.post("/notify",function(req,res){
 			var payload = {title: 'No matter', message: message, badge: 'Hola is working', sound: ''};
 			// send a notification to a single device 
 			
-			try{
+			
+						
 				PushNotification.pushSingle(DeviceType.IOS, eachObj, message, badge, sound, payload);	
-				logger.info('Notification sent to IOS device',message);
-			}
-			catch(ex){
-				logger.error('Exception occured',ex);
-			}
+			//	logger.info('Notification sent to IOS device',message);
+	
+			
 		})
 	
 
