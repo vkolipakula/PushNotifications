@@ -29,7 +29,6 @@ PushNotification.init({
         cert: path.resolve('./dev/AnaCertFinal.pem'),
         key: path.resolve('./dev/AnaKey.pem')
     }
-	console.log('Certificates initialized');
 
 });
 app.get("/status",function(req,res){
