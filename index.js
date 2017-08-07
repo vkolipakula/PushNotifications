@@ -74,9 +74,9 @@ app.post("/notify",function(req,res){
 	res.send({"data":"Notification done"});
 });
 
-app.get('/store',function(req,res){
+app.post('/store',function(req,res){
 	console.log("-----",req.query);
-	var data = req.query.data
+	var data = req.body.data
 	tmp_arr.push(data);
 	tmp_arr = _.uniq(tmp_arr);
 	res.send({data:tmp_arr})
