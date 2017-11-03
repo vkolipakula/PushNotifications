@@ -1,7 +1,7 @@
 {
-  "name": "mani",
+  "name": "Saikumar",
   "version": "1.0.0",
-  "description": "This is for learning",
+  "description": "This is for push notification",
   "main": "app.js",
   "scripts": {
     "test": "node index.js",
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/vkolipakula/PushNotifications.git"
   },
-  "author": "mani",
+  "author": "Saikumar",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/vkolipakula/PushNotifications/issues"
@@ -24,6 +24,7 @@
     "heroku-logger": "^0.1.4",
     "json-fs-store": "^1.0.1",
     "json-store": "0.0.1",
+    "mongolab-data-api": "^1.1.6",
     "path": "^0.12.7",
     "push-notification": "^0.1.8",
     "underscore": "^1.8.3"
