@@ -19,6 +19,7 @@
   "homepage": "https://github.com/vkolipakula/PushNotifications#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
     "debug-log": "^1.0.1",
     "express": "^4.15.3",
     "heroku-logger": "^0.1.4",
